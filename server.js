@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cors());
-const port = process.env.PORT || 5001;
+var port = process.env.PORT || 5001;
 
 app.get('/', (req, res) => [
     res.status(200).send('hi')
