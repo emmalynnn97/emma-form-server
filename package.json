@@ -7,6 +7,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "engines": {
+    "node": "8.9.3"
+},
   "author": "Emma Lynn",
   "license": "ISC",
   "dependencies": {
