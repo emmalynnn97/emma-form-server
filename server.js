@@ -12,29 +12,30 @@ app.use(cors());
 const port = process.env.PORT || 5001;
 
 app.get('/', (req, res) => {
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.EMAIL_USERNAME,
-          pass: process.env.EMAIL_PASSWORD
-        }
-      });
-      var mailOptions = {
-        from: process.env.EMAIL_USERNAME,
-        to: 'emmalynnn97@gmail.com',
-        subject: 'A new form submission has been made',
-        html: `<h1>A new form submission has been made</h1>`
-      };
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
     res.status(200).send('hi')
 })
-
+app.post('/contact', (req, res) => {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD
+    }
+  });
+  var mailOptions = {
+    from: process.env.EMAIL_USERNAME,
+    to: 'emmalynnn97@gmail.com',
+    subject: `New email from ${req.body.firstName}`,
+    html: `<h2>Subject: ${req.body.subject}</h2><br/><h3>Email: ${req.body.email}</h3><br/><p>${req.body.message}</p>`
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+})
 app.listen(port, () => {
     console.log(`Emma Contact server is listening on port ${port}`)
 })
