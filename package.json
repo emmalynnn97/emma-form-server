@@ -9,10 +9,11 @@
   },
   "engines": {
     "node": "8.9.3"
-},
+  },
   "author": "Emma Lynn",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "nodemailer": "^6.4.14"
